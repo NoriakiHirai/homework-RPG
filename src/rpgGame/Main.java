@@ -1,80 +1,51 @@
-package test;
+package rpgGame;
 
 
 import java.util.Scanner;
 
+import rpgGame.gameCharacter.*;
+
 public class Main {
 
 	public static void main(String[] args) {
-
-		User user1 = inputUser();
-		printStatus(user1);
-
-		user1.levelUp();
-		printStatus(user1);
+		GameCharacter player = createPlayer();
+		
+		System.out.println("\n‚ ‚È‚½‚ÌƒXƒe[ƒ^ƒX‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B\n");
+		displayStatus(player);
 	}
 
-	static User inputUser(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚’ä½œæˆã—ã¾ã™");
-		System.out.print("åå‰ï¼š");
-		String userName = sc.next();
-		System.out.print("è·æ¥­(1â‡’æˆ¦å£«,2â‡’é­”æ³•ä½¿ã„,3â‡’ç›—è³Š)ï¼š");
-		int kariType = sc.nextInt();
-		UserType userType = null;
-		switch (kariType){
-		case 1:
-			userType = UserType.WARRIOR;
-			break;
-		case 2:
-			userType = UserType.WIZARD;
-			break;
-		case 3:
-			userType = UserType.THIEF;
-			break;
-		default:
-			userType = UserType.NEET;
-		}
-		System.out.print("æ”»æ’ƒåŠ›ï¼š");
-		String str = sc.next();
-		System.out.print("ç´ æ—©ã•ï¼š");
-		String agi = sc.next();
-		System.out.print("HPï¼š");
-		String hp = sc.next();
-		System.out.println();
-		User user = createUser(userName,userType,str,agi,hp);
-		sc.close();
-		return user;
+	private static GameCharacter createPlayer() {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("‘€ìƒLƒƒƒ‰ƒNƒ^[‚ğì¬‚µ‚Ü‚·B");
+		System.out.println("–¼‘O‚ÆE‹Æ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+		
+		System.out.print("–¼‘OF");
+		String playerName = scanner.nextLine();
+		
+		System.out.print("E‹Æi1Ëím,2Ë–‚–@g‚¢,3Ë“‘¯jF");
+		String jobNumber = scanner.nextLine();
+		
+		scanner.close();
+		
+		return CharacterFactory.getCharacter(playerName, jobNumber);
 	}
 
-	static User createUser(
-			String userName,
-			UserType userType,
-			String str,
-			String agi,
-			String hp){
-
-		switch (userType){
-		case WARRIOR:
-			return new UserWAR(userName,userType,str,agi,hp);
-		case WIZARD:
-			return new UserWIZ(userName,userType,str,agi,hp);
-		case THIEF:
-			return new UserTHI(userName,userType,str,agi,hp);
-		}
-		return new UserNEE(userName,userType,str,agi,hp);
+	// ì¬‚µ‚½ƒNƒ‰ƒX‚©‚çƒXƒe[ƒ^ƒX‚ğæ“¾‚µAƒRƒ“ƒ\[ƒ‹‚É•\¦‚·‚é
+	private static void displayStatus(GameCharacter player) {
+		// ƒRƒ“ƒ\[ƒ‹‚É•\¦‚·‚é’l‚ğ¶¬‚·‚é
+		StringBuilder sbStatusTitle = new StringBuilder().append("¡").append(player.getName()).append("‚ÌƒXƒe[ƒ^ƒX");
+		StringBuilder sbJob = new StringBuilder().append("E‹Æ:").append(player.getJobCategory());
+		StringBuilder sbHp = new StringBuilder().append(Message.HP).append(player.getHp());
+		StringBuilder sbAggresivity = new StringBuilder().append(Message.AGGRESSIVITY).append(player.getAggressivity());
+		StringBuilder sbQuickness = new StringBuilder().append(Message.QUICKNESS).append(player.getQuickness());
+		
+		// ƒXƒe[ƒ^ƒX‚ğƒRƒ“ƒ\[ƒ‹‚É•\¦‚·‚éB
+		System.out.println(sbStatusTitle.toString());
+		System.out.println(sbJob.toString());
+		System.out.println(sbHp.toString());
+		System.out.println(sbAggresivity.toString());
+		System.out.println(sbQuickness.toString());
 	}
-
-	static void printStatus(User user){
-		StringBuilder sb1 = new StringBuilder();
-		sb1.append("â– ").append(user.getUserName()).append("ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹");
-		System.out.println(sb1);
-		sb1.append("é€šã‚Šå:").append(user.getUserType()).append(user.getUserName());
-		StringBuilder sb2 = new StringBuilder();
-		System.out.println(sb2);
-		System.out.println("HPï¼š" + user.getHp());
-		System.out.println("æ”»æ’ƒåŠ›ï¼š" + user.getStr());
-		System.out.println("ç´ æ—©ã•ï¼š" + user.getAgi());
-		System.out.println();
-	}
+	
 }
