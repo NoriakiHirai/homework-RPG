@@ -1,9 +1,9 @@
-package rpgGame.gameCharacter.wizardJob.lowerWizardClass;
+package rpg.gameCharacter.wizardJob.lowerWizardClass;
 
 import java.math.BigDecimal;
 
-import rpgGame.gameCharacter.GameCharacter;
-import rpgGame.gameCharacter.JobCategory;
+import rpg.gameCharacter.GameCharacter;
+import rpg.gameCharacter.JobCategory;
 
 public class Wizard extends GameCharacter {
 

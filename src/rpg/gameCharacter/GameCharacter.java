@@ -1,4 +1,4 @@
-package rpgGame.gameCharacter;
+package rpg.gameCharacter;
 
 import java.math.BigDecimal;
 

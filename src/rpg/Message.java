@@ -1,4 +1,4 @@
-package rpgGame;
+package rpg;
 
 public class Message {
 	public static final String HP = "HPÅF";

@@ -1,9 +1,9 @@
-package rpgGame.gameCharacter;
+package rpg.gameCharacter;
 
-import rpgGame.gameCharacter.thiefJob.lowerThiefClass.Thief;
-import rpgGame.gameCharacter.villagerJob.lowerVillagerClass.Villager;
-import rpgGame.gameCharacter.warriorJob.lowerWarriorClass.Warrior;
-import rpgGame.gameCharacter.wizardJob.lowerWizardClass.Wizard;
+import rpg.gameCharacter.thiefJob.lowerThiefClass.Thief;
+import rpg.gameCharacter.villagerJob.lowerVillagerClass.Villager;
+import rpg.gameCharacter.warriorJob.lowerWarriorClass.Warrior;
+import rpg.gameCharacter.wizardJob.lowerWizardClass.Wizard;
 
 public class CharacterFactory {
 	public static GameCharacter getCharacter(String name, String jobNumber) {

@@ -1,9 +1,9 @@
-package rpgGame.gameCharacter.villagerJob.lowerVillagerClass;
+package rpg.gameCharacter.villagerJob.lowerVillagerClass;
 
 import java.math.BigDecimal;
 
-import rpgGame.gameCharacter.GameCharacter;
-import rpgGame.gameCharacter.JobCategory;
+import rpg.gameCharacter.GameCharacter;
+import rpg.gameCharacter.JobCategory;
 
 public class Villager extends GameCharacter {
 

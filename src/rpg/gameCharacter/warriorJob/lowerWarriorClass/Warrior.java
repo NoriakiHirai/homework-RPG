@@ -1,9 +1,9 @@
-package rpgGame.gameCharacter.warriorJob.lowerWarriorClass;
+package rpg.gameCharacter.warriorJob.lowerWarriorClass;
 
 import java.math.BigDecimal;
 
-import rpgGame.gameCharacter.GameCharacter;
-import rpgGame.gameCharacter.JobCategory;
+import rpg.gameCharacter.GameCharacter;
+import rpg.gameCharacter.JobCategory;
 
 public class Warrior extends GameCharacter {
 

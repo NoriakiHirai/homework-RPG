@@ -1,8 +1,8 @@
-package rpgGame;
+package rpg;
 
 import java.util.Scanner;
 
-import rpgGame.gameCharacter.*;
+import rpg.gameCharacter.*;
 
 public class Main {
 

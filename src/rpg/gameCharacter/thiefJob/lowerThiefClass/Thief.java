@@ -1,9 +1,9 @@
-package rpgGame.gameCharacter.thiefJob.lowerThiefClass;
+package rpg.gameCharacter.thiefJob.lowerThiefClass;
 
 import java.math.BigDecimal;
 
-import rpgGame.gameCharacter.GameCharacter;
-import rpgGame.gameCharacter.JobCategory;
+import rpg.gameCharacter.GameCharacter;
+import rpg.gameCharacter.JobCategory;
 
 public class Thief extends GameCharacter {
 
