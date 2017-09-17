@@ -1,63 +1,58 @@
-package rpgGame;
+package test;
 
 import java.math.BigDecimal;
 
+
 public class UserWAR implements User {
-	private final String name;
-	private UserType userType;
-	private BigDecimal aggressivity;
-	private BigDecimal quickness;
-	private BigDecimal hp;
 
-	/**
-	 * @param name
-	 * @param userType
-	 * @param aggressivity
-	 * @param quickness
-	 * @param hp
-	 */
-	public UserWAR(String name, UserType userType, BigDecimal aggressivity, BigDecimal quickness, BigDecimal hp) {
+	private final String userName;
+	private final UserType userType;
+	private BigDecimal str;		//æ”»æ’ƒåŠ›
+	private BigDecimal agi;		//ç´ æ—©ã•
+	private BigDecimal hp;		//ä½“åŠ›
+
+	public UserWAR(String userName,
+			UserType userType,
+			String str,
+			String agi,
+			String hp) {
 		super();
-		this.name = name;
+		this.userName = userName;
 		this.userType = userType;
-		this.aggressivity = aggressivity;
-		this.quickness = quickness;
-		this.hp = hp;
+		this.str = new BigDecimal(str);
+		this.agi = new BigDecimal(agi);
+		this.hp = new BigDecimal(hp);
 	}
 
-	@Override
 	public String getUserName() {
-		return name;
+		return this.userName;
 	}
 
-	@Override
 	public UserType getUserType() {
-		return userType;
+		return this.userType;
 	}
 
-	@Override
-	public BigDecimal getUserStr() {
-		return aggressivity;
+	public BigDecimal getStr() {
+		return this.str;
 	}
 
-	@Override
-	public BigDecimal getUserAgi() {
-		return quickness;
+	public BigDecimal getAgi() {
+		return this.agi;
 	}
 
-	@Override
-	public BigDecimal getUserHp() {
-		return hp;
+	public BigDecimal getHp() {
+		return this.hp;
 	}
 
 	@Override
 	public void levelUp() {
-		hp = hp.add(aggressivity.divide(BigDecimal.valueOf(2)));
-		aggressivity = aggressivity.add(BigDecimal.valueOf(3));
-		quickness = quickness.multiply(BigDecimal.valueOf(1.3));
-		
+		this.str = this.str.add(new BigDecimal("3"));
+		this.agi = this.agi.multiply(new BigDecimal("1.3"));
+		this.hp = this.hp.add(
+				this.str.divide(new BigDecimal("2")));
+		System.out.println(this.userName + "ãŒãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ã¾ã—ãŸï¼");
 		System.out.println();
-		System.out.println(name + "‚ªƒŒƒxƒ‹ƒAƒbƒv‚µ‚Ü‚µ‚½!");
 	}
 
 }
+

@@ -3,7 +3,7 @@ package test;
 import java.math.BigDecimal;
 
 
-public class UserTHI implements User {
+public class UserNEE implements User {
 
 	private final String userName;
 	private final UserType userType;
@@ -11,7 +11,7 @@ public class UserTHI implements User {
 	private BigDecimal agi;		//素早さ
 	private BigDecimal hp;		//体力
 
-	public UserTHI(String userName,
+	public UserNEE(String userName,
 			UserType userType,
 			String str,
 			String agi,
@@ -46,10 +46,10 @@ public class UserTHI implements User {
 
 	@Override
 	public void levelUp() {
-		this.str = this.str.add(new BigDecimal("2"));
-		this.agi = this.agi.multiply(new BigDecimal("1.5"));
+		this.str = this.str.add(new BigDecimal("1"));
+		this.agi = this.agi.multiply(new BigDecimal("1.1"));
 		this.hp = this.hp.add(
-				this.str.divide(new BigDecimal("3")));
+				this.str.divide(new BigDecimal("5")));
 		System.out.println(this.userName + "がレベルアップしました！");
 		System.out.println();
 	}

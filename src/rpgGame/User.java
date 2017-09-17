@@ -1,12 +1,12 @@
-package rpgGame;
+package test;
 
 import java.math.BigDecimal;
 
 public interface User {
+	void levelUp();
 	String getUserName();
 	UserType getUserType();
-	BigDecimal getUserStr();
-	BigDecimal getUserAgi();
-	BigDecimal getUserHp();
-	void levelUp();
+	BigDecimal getStr();
+	BigDecimal getAgi();
+	BigDecimal getHp();
 }

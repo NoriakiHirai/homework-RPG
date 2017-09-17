@@ -1,5 +1,6 @@
-package rpgGame;
+package test;
+
 
 public enum UserType {
-	WARRIOR, WIZARD, THIEF
+	WARRIOR,WIZARD,THIEF,NEET
 }
