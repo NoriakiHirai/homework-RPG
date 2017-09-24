@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import rpg.user.User;
 
-public class Equiq {
+public class Equip {
 
 	public static void equipWeapon(User user, HashMap<String, String> itemMap) {
 		System.out.println("*** •Ší‘•”õƒƒjƒ…[ ***");

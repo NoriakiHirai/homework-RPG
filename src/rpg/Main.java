@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import rpg.items.util.ItemUtility;
-import rpg.ui.equipment.Equiq;
+import rpg.ui.equipment.Equip;
 import rpg.user.*;
 
 public class Main {
@@ -21,7 +21,7 @@ public class Main {
 			HashMap<String, String> weapons = ItemUtility.getWeapons();
 			// 装備品が存在しない場合は、メッセージを出力
 			if (weapons.size() > 0) {
-				Equiq.equipWeapon(player, weapons);
+				Equip.equipWeapon(player, weapons);
 			} else {
 				System.out.println("現在装備できる武器はありません。");
 				System.out.println();
@@ -30,7 +30,7 @@ public class Main {
 			HashMap<String, String> armors = ItemUtility.getArmors();
 			// 装備品が存在しない場合は、メッセージを出力
 			if (armors.size() > 0) {
-				Equiq.equipArmor(player, armors);
+				Equip.equipArmor(player, armors);
 			} else {
 				System.out.println("現在装備できる防具はありません。");
 				System.out.println();
