@@ -1,8 +1,11 @@
 package rpg;
 
 
+import java.util.HashMap;
 import java.util.Scanner;
 
+import rpg.items.util.ItemUtility;
+import rpg.ui.equipment.Equiq;
 import rpg.user.User;
 import rpg.user.UserNEE;
 import rpg.user.UserTHI;
@@ -17,18 +20,40 @@ public class Main {
 		User player = inputUser();
 		printStatus(player);
 		
-		player.equipWeapon();
-		player.equipArmor();
+		HashMap<String, String> weapons = ItemUtility.getWeapons();
+		// 装備品が存在しない場合は、メッセージを出力
+		if (weapons.size() > 0) {
+			Equiq.EquipWeapon(player, weapons);
+		} else {
+			System.out.println("現在装備できる武器はありません。");
+			System.out.println();
+		}
+
+		HashMap<String, String> armors = ItemUtility.getArmors();
+		// 装備品が存在しない場合は、メッセージを出力
+		if (armors.size() > 0) {
+			Equiq.EquipArmor(player, armors);
+		} else {
+			System.out.println("現在装備できる防具はありません。");
+			System.out.println();
+		}
 		
-//		player.levelUp();
-		printStatus(player);
+		//		player.levelUp();
+		
+		try {
+			Thread.sleep(300);
+			printStatus(player);
+		} catch (InterruptedException e) { //停止中にスレッド割込みが発生すると、エラーがスローされる。
+			e.printStackTrace();
+		}
 	}
 
 	static User inputUser(){
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("ユーザーを作成します");
 		System.out.print("名前：");
-		String userName = sc.next();
+		String userName = sc.nextLine();
 		System.out.print("職業(1⇒戦士,2⇒魔法使い,3⇒盗賊)：");
 		int kariType = sc.nextInt();
 		UserType userType = null;
@@ -53,7 +78,7 @@ public class Main {
 		String hp = sc.next();
 		System.out.println();
 		User user = createUser(userName,userType,str,agi,hp);
-		sc.close();
+//		sc.close();
 		return user;
 	}
 
