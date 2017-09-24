@@ -1,6 +1,7 @@
 package rpg.user;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 public interface User {
 	void levelUp();
@@ -11,4 +12,5 @@ public interface User {
 	BigDecimal getStr();
 	BigDecimal getAgi();
 	BigDecimal getHp();
+	HashMap<String, String> getEquipments();
 }

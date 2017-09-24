@@ -47,6 +47,10 @@ public class UserNEE implements User {
 	public BigDecimal getHp() {
 		return this.hp;
 	}
+	
+	public HashMap<String, String> getEquipments() {
+		return this.equipments;
+	}
 
 	@Override
 	public void levelUp() {
@@ -87,5 +91,7 @@ public class UserNEE implements User {
 			logger.warning(String.format("装備品情報に不正なデータが存在します。"));
 		}
 	}
+
+
 
 }

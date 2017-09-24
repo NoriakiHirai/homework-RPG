@@ -48,6 +48,10 @@ public class UserWAR implements User {
 		return this.hp;
 	}
 
+	public HashMap<String, String> getEquipments() {
+		return this.equipments;
+	}
+
 	@Override
 	public void levelUp() {
 		this.str = this.str.add(new BigDecimal("3"));

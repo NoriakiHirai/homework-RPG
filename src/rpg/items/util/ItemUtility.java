@@ -41,10 +41,8 @@ public class ItemUtility {
 			
 		} catch (FileNotFoundException e) {
 			logger.warning(String.format("以下のファイルがみつかりません。\n%s", fileName));
-//			e.printStackTrace();
 		} catch (IOException e) {
 			logger.warning(String.format("以下のファイルの読み込みに失敗しました。\n%s", fileName));
-//			e.printStackTrace();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			logger.warning(String.format("以下のファイルに不正なデータが存在します。\n%s", fileName));
 		}

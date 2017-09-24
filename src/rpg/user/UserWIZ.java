@@ -48,6 +48,10 @@ public class UserWIZ implements User {
 	public BigDecimal getHp() {
 		return this.hp;
 	}
+	
+	public HashMap<String, String> getEquipments() {
+		return this.equipments;
+	}
 
 	@Override
 	public void levelUp() {
