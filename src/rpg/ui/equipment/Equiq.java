@@ -7,7 +7,7 @@ import rpg.user.User;
 
 public class Equiq {
 
-	public static void EquipWeapon(User user, HashMap<String, String> itemMap) {
+	public static void equipWeapon(User user, HashMap<String, String> itemMap) {
 		System.out.println("*** •Ší‘•”õƒƒjƒ…[ ***");
 		displayEquipments(itemMap, "UŒ‚—Í");
 
@@ -15,7 +15,7 @@ public class Equiq {
 		user.equipWeapon(choiceItem, itemMap.get(choiceItem));
 	}
 
-	public static void EquipArmor(User user, HashMap<String, String> itemMap) {
+	public static void equipArmor(User user, HashMap<String, String> itemMap) {
 		System.out.println("*** –h‹ï‘•”õƒƒjƒ…[ ***");
 		displayEquipments(itemMap, "–hŒä—Í");
 

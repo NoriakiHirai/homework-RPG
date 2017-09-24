@@ -23,9 +23,14 @@ public class UserWAR implements User {
 		super();
 		this.userName = userName;
 		this.userType = userType;
-		this.str = new BigDecimal(str);
-		this.agi = new BigDecimal(agi);
-		this.hp = new BigDecimal(hp);
+		try {
+			this.str = new BigDecimal(str);
+			this.agi = new BigDecimal(agi);
+			this.hp = new BigDecimal(hp);
+		} catch (NumberFormatException e) {
+			logger.severe("不正な入力ステータスです。");
+			throw e;
+		}
 	}
 
 	public String getUserName() {
