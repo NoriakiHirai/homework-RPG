@@ -14,28 +14,35 @@ import rpg.user.User;
 public class EquipImpl implements Equip {
 
 	private final Logger logger = Logger.getLogger("EquipImplLogging");
+	private static final String STRENGTHVALIATION = "攻撃力上昇値";
+	private static final String HPVALIATION = "HP上昇値";
 
 	@Override
 	public void equipWeapon(User user) {
-		System.out.println("*** 武器装備メニュー ***");
 		HashMap<String, String> weapons = ItemUtility.getWeapons();
+		
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("*** 武器装備メニュー ***");
 		// 装備品が存在しない場合は、メッセージを出力
 		if (weapons.size() > 0) {
-			String selectedEquipment = selectEquipment(weapons, "攻撃力上昇値");
+			String selectedEquipment = selectEquipment(weapons, STRENGTHVALIATION);
 
 			try {
 				if (weapons.containsKey(selectedEquipment)) {
 					user.attachEquipment(EquipType.WEAPON, selectedEquipment);
 					user.strengthen(StatusType.STRENGTH, new BigDecimal(weapons.get(selectedEquipment)));
 				} else {
-					System.out.println("入力された装備アイテムは所持していません。");
+					System.out.println("入力された装備アイテムを所持していません。");
 					System.out.println();
 				}
 				
-			} catch (NullPointerException e) {
-				logger.warning("不正な装備品データです。");
-			} catch (NumberFormatException e) {
-				logger.warning(String.format("装備品情報に不正なデータが存在します。"));
+			} catch (NullPointerException | NumberFormatException e) {
+				logger.warning(String.format("装備品情報（『%s』の『%s』）に不正なデータが存在します。ステータスは変動しません。\n", selectedEquipment, STRENGTHVALIATION));
 			}
 
 		} else {
@@ -48,26 +55,30 @@ public class EquipImpl implements Equip {
 
 	@Override
 	public void equipArmor(User user) {
-		System.out.println("*** 防具装備メニュー ***");
-
 		HashMap<String, String> armors = ItemUtility.getArmors();
+		
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("*** 防具装備メニュー ***");
 		// 装備品が存在しない場合は、メッセージを出力
 		if (armors.size() > 0) {
-			String selectedEquipment = selectEquipment(armors, "HP上昇値");
+			String selectedEquipment = selectEquipment(armors, HPVALIATION);
 
 			try {
 				if (armors.containsKey(selectedEquipment)) {
 					user.attachEquipment(EquipType.ARMOR, selectedEquipment);
 					user.strengthen(StatusType.HP, new BigDecimal(armors.get(selectedEquipment)));
 				} else {
-					System.out.println("入力された装備アイテムは所持していません。");
+					System.out.println("入力された装備アイテムを所持していません。");
 					System.out.println();
 				}
 
-			} catch (NullPointerException e) {
-				logger.warning("不正な装備品データです。");
-			} catch (NumberFormatException e) {
-				logger.warning(String.format("装備品情報に不正なデータが存在します。"));
+			} catch (NullPointerException | NumberFormatException e) {
+				logger.warning(String.format("装備品情報（『%s』の『%s』）に不正なデータが存在します。ステータスは変動しません。\n", selectedEquipment, HPVALIATION));
 			}
 
 		} else {

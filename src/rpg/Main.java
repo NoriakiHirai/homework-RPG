@@ -65,8 +65,10 @@ public class Main {
 			System.out.print("HP：");
 			String hp = sc.next();
 			System.out.println();
+			
 			user = createUser(userName, userType, str, agi, hp);
 			// sc.close();
+			
 		} catch (InputMismatchException e) {
 			logger.severe("不正な職業選択です。");
 			throw e;

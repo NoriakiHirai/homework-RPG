@@ -30,7 +30,7 @@ public class UserWAR implements User {
 			this.agi = new BigDecimal(agi);
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
-			logger.severe("不正な入力ステータスです。");
+			logger.severe("入力ステータスに不正な値が存在します。");
 			throw e;
 		}
 	}
