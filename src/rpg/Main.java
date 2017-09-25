@@ -5,8 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import rpg.items.util.ItemUtility;
-import rpg.ui.equipment.Equip;
+import rpg.ui.equipment.EquipImpl;
 import rpg.user.*;
 
 public class Main {
@@ -18,30 +17,16 @@ public class Main {
 			User player = inputUser();
 			printStatus(player);
 
-			HashMap<String, String> weapons = ItemUtility.getWeapons();
-			// 装備品が存在しない場合は、メッセージを出力
-			if (weapons.size() > 0) {
-				Equip.equipWeapon(player, weapons);
-			} else {
-				System.out.println("現在装備できる武器はありません。");
-				System.out.println();
-			}
-
-			HashMap<String, String> armors = ItemUtility.getArmors();
-			// 装備品が存在しない場合は、メッセージを出力
-			if (armors.size() > 0) {
-				Equip.equipArmor(player, armors);
-			} else {
-				System.out.println("現在装備できる防具はありません。");
-				System.out.println();
-			}
+			EquipImpl equip = new EquipImpl();
+			equip.equipWeapon(player);
+			equip.equipArmor(player);
 
 			// 装備関連のメソッドを実行している間、2度目のprintStatusが実行されないよう
 			// 下記sleepで本メソッドの実行を中断する。
 			Thread.sleep(300);
 			printStatus(player);
 
-		} catch (InputMismatchException | InterruptedException e) {
+		} catch (InterruptedException | InputMismatchException | NumberFormatException e) {
 			e.printStackTrace();
 		}
 
