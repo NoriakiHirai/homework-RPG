@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import rpg.ui.Equip;
 import rpg.ui.equipment.EquipImpl;
 import rpg.user.*;
 
@@ -17,7 +18,7 @@ public class Main {
 			User player = inputUser();
 			printStatus(player);
 
-			EquipImpl equip = new EquipImpl();
+			Equip equip = new EquipImpl();
 			equip.equipWeapon(player);
 			equip.equipArmor(player);
 

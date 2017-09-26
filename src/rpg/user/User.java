@@ -7,8 +7,8 @@ import rpg.items.EquipType;
 
 public interface User {
 	void levelUp();
-	void strengthen(StatusType statusType, BigDecimal statusVariation);
 	void attachEquipment(EquipType equipType, String equipment);
+	void varyStatus(StatusType statusType, BigDecimal statusVariation);
 	HashMap<String, String> getEquipments();
 	String getUserName();
 	UserType getUserType();

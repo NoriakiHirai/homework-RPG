@@ -71,7 +71,7 @@ public class UserWIZ implements User {
 	}
 
 	@Override
-	public void strengthen(StatusType statusType, BigDecimal statusVariation) {
+	public void varyStatus(StatusType statusType, BigDecimal statusVariation) {
 		switch (statusType) {
 		case STRENGTH:
 			this.str = this.str.add(statusVariation);

@@ -35,7 +35,7 @@ public class EquipImpl implements Equip {
 			try {
 				if (weapons.containsKey(selectedEquipment)) {
 					user.attachEquipment(EquipType.WEAPON, selectedEquipment);
-					user.strengthen(StatusType.STRENGTH, new BigDecimal(weapons.get(selectedEquipment)));
+					user.varyStatus(StatusType.STRENGTH, new BigDecimal(weapons.get(selectedEquipment)));
 				} else {
 					System.out.println("入力された装備アイテムを所持していません。");
 					System.out.println();
@@ -71,7 +71,7 @@ public class EquipImpl implements Equip {
 			try {
 				if (armors.containsKey(selectedEquipment)) {
 					user.attachEquipment(EquipType.ARMOR, selectedEquipment);
-					user.strengthen(StatusType.HP, new BigDecimal(armors.get(selectedEquipment)));
+					user.varyStatus(StatusType.HP, new BigDecimal(armors.get(selectedEquipment)));
 				} else {
 					System.out.println("入力された装備アイテムを所持していません。");
 					System.out.println();
