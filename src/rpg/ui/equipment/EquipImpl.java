@@ -14,8 +14,8 @@ import rpg.user.User;
 public class EquipImpl implements Equip {
 
 	private final Logger logger = Logger.getLogger("EquipImplLogging");
-	private static final String STRENGTHVALIATION = "攻撃力上昇値";
-	private static final String HPVALIATION = "HP上昇値";
+	private static final String STRENGTHVALIATION = "攻撃力変動値";
+	private static final String HPVALIATION = "HP変動値";
 
 	@Override
 	public void equipWeapon(User user) {
