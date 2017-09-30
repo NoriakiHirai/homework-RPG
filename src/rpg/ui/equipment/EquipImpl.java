@@ -14,8 +14,8 @@ import rpg.user.User;
 public class EquipImpl implements Equip {
 
 	private final Logger logger = Logger.getLogger("EquipImplLogging");
-	private static final String STRENGTHVALIATION = "UŒ‚—Í•Ï“®’l";
-	private static final String HPVALIATION = "HP•Ï“®’l";
+	private static final String STRENGTHVALIATION = "æ”»æ’ƒåŠ›å¤‰å‹•å€¤";
+	private static final String HPVALIATION = "HPå¤‰å‹•å€¤";
 
 	@Override
 	public void equipWeapon(User user) {
@@ -27,8 +27,8 @@ public class EquipImpl implements Equip {
 			e.printStackTrace();
 		}
 
-		System.out.println("*** •Ší‘•”õƒƒjƒ…[ ***");
-		// ‘•”õ•i‚ª‘¶Ý‚µ‚È‚¢ê‡‚ÍAƒƒbƒZ[ƒW‚ðo—Í
+		System.out.println("*** æ­¦å™¨è£…å‚™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ ***");
+		// è£…å‚™å“ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›
 		if (weapons.size() > 0) {
 			String selectedEquipment = selectEquipment(weapons, STRENGTHVALIATION);
 
@@ -37,16 +37,16 @@ public class EquipImpl implements Equip {
 					user.attachEquipment(EquipType.WEAPON, selectedEquipment);
 					user.varyStatus(StatusType.STRENGTH, new BigDecimal(weapons.get(selectedEquipment)));
 				} else {
-					System.out.println("“ü—Í‚³‚ê‚½‘•”õƒAƒCƒeƒ€‚ðŠŽ‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+					System.out.println("å…¥åŠ›ã•ã‚ŒãŸè£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‰€æŒã—ã¦ã„ã¾ã›ã‚“ã€‚");
 					System.out.println();
 				}
 				
 			} catch (NullPointerException | NumberFormatException e) {
-				logger.warning(String.format("‘•”õ•iî•ñiw%sx‚Ìw%sxj‚É•s³‚Èƒf[ƒ^‚ª‘¶Ý‚µ‚Ü‚·BƒXƒe[ƒ^ƒX‚Í•Ï“®‚µ‚Ü‚¹‚ñB\n", selectedEquipment, STRENGTHVALIATION));
+				logger.warning(String.format("è£…å‚™å“æƒ…å ±ï¼ˆã€Ž%sã€ã®ã€Ž%sã€ï¼‰ã«ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¾ã™ã€‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯å¤‰å‹•ã—ã¾ã›ã‚“ã€‚Â¥n", selectedEquipment, STRENGTHVALIATION));
 			}
 
 		} else {
-			System.out.println("Œ»Ý‘•”õ‚Å‚«‚é•Ší‚Í‚ ‚è‚Ü‚¹‚ñB");
+			System.out.println("ç¾åœ¨è£…å‚™ã§ãã‚‹æ­¦å™¨ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 			System.out.println();
 
 		}
@@ -63,8 +63,8 @@ public class EquipImpl implements Equip {
 			e.printStackTrace();
 		}
 		
-		System.out.println("*** –h‹ï‘•”õƒƒjƒ…[ ***");
-		// ‘•”õ•i‚ª‘¶Ý‚µ‚È‚¢ê‡‚ÍAƒƒbƒZ[ƒW‚ðo—Í
+		System.out.println("*** é˜²å…·è£…å‚™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ ***");
+		// è£…å‚™å“ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›
 		if (armors.size() > 0) {
 			String selectedEquipment = selectEquipment(armors, HPVALIATION);
 
@@ -73,16 +73,16 @@ public class EquipImpl implements Equip {
 					user.attachEquipment(EquipType.ARMOR, selectedEquipment);
 					user.varyStatus(StatusType.HP, new BigDecimal(armors.get(selectedEquipment)));
 				} else {
-					System.out.println("“ü—Í‚³‚ê‚½‘•”õƒAƒCƒeƒ€‚ðŠŽ‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+					System.out.println("å…¥åŠ›ã•ã‚ŒãŸè£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‰€æŒã—ã¦ã„ã¾ã›ã‚“ã€‚");
 					System.out.println();
 				}
 
 			} catch (NullPointerException | NumberFormatException e) {
-				logger.warning(String.format("‘•”õ•iî•ñiw%sx‚Ìw%sxj‚É•s³‚Èƒf[ƒ^‚ª‘¶Ý‚µ‚Ü‚·BƒXƒe[ƒ^ƒX‚Í•Ï“®‚µ‚Ü‚¹‚ñB\n", selectedEquipment, HPVALIATION));
+				logger.warning(String.format("è£…å‚™å“æƒ…å ±ï¼ˆã€Ž%sã€ã®ã€Ž%sã€ï¼‰ã«ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¾ã™ã€‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯å¤‰å‹•ã—ã¾ã›ã‚“ã€‚Â¥n", selectedEquipment, HPVALIATION));
 			}
 
 		} else {
-			System.out.println("Œ»Ý‘•”õ‚Å‚«‚é•Ší‚Í‚ ‚è‚Ü‚¹‚ñB");
+			System.out.println("ç¾åœ¨è£…å‚™ã§ãã‚‹æ­¦å™¨ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 			System.out.println();
 
 		}
@@ -99,7 +99,7 @@ public class EquipImpl implements Equip {
 			System.out.println("--------------");
 		}
 
-		System.out.print("‘•”õ‚·‚éƒAƒCƒeƒ€‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B>");
+		System.out.print("è£…å‚™ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚>");
 		return sc.nextLine();
 	}
 

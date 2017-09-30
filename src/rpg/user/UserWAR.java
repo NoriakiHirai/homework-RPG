@@ -12,10 +12,10 @@ public class UserWAR implements User {
 	private final Logger logger = Logger.getLogger("UserWARLogging");
 	private final String userName;
 	private final UserType userType;
-	private BigDecimal str;		//UŒ‚—Í
-	private BigDecimal agi;		//‘f‘‚³
-	private BigDecimal hp;		//‘Ì—Í
-	private HashMap<String, String> equipments = new HashMap<>(); //‘•”õ•i
+	private BigDecimal str;		//æ”»æ’ƒåŠ›
+	private BigDecimal agi;		//ç´ æ—©ã•
+	private BigDecimal hp;		//ä½“åŠ›
+	private HashMap<String, String> equipments = new HashMap<>(); //è£…å‚™å“
 
 	public UserWAR(String userName,
 			UserType userType,
@@ -30,7 +30,7 @@ public class UserWAR implements User {
 			this.agi = new BigDecimal(agi);
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
-			logger.severe("“ü—ÍƒXƒe[ƒ^ƒX‚É•s³‚È’l‚ª‘¶İ‚µ‚Ü‚·B");
+			logger.severe("å…¥åŠ›ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ä¸æ­£ãªå€¤ãŒå­˜åœ¨ã—ã¾ã™ã€‚");
 			throw e;
 		}
 	}
@@ -65,7 +65,7 @@ public class UserWAR implements User {
 		this.agi = this.agi.multiply(new BigDecimal("1.3"));
 		this.hp = this.hp.add(
 				this.str.divide(new BigDecimal("2")));
-		System.out.println(this.userName + "‚ªƒŒƒxƒ‹ƒAƒbƒv‚µ‚Ü‚µ‚½I");
+		System.out.println(this.userName + "ãŒãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ã¾ã—ãŸï¼");
 		System.out.println();
 	}
 
@@ -74,17 +74,17 @@ public class UserWAR implements User {
 		switch (statusType) {
 		case STRENGTH:
 			this.str = this.str.add(statusVariation);
-			System.out.println("UŒ‚—Í‚ª" + statusVariation + "ã¸‚µ‚Ü‚µ‚½B");
+			System.out.println("æ”»æ’ƒåŠ›ãŒ" + statusVariation + "ä¸Šæ˜‡ã—ã¾ã—ãŸã€‚");
 			System.out.println();
 			break;
 		case AGILITY:
 			this.agi = this.agi.add(statusVariation);
-			System.out.println("‘f‘‚³‚ª" + statusVariation + "ã¸‚µ‚Ü‚µ‚½B");
+			System.out.println("ç´ æ—©ã•ãŒ" + statusVariation + "ä¸Šæ˜‡ã—ã¾ã—ãŸã€‚");
 			System.out.println();
 			break;
 		case HP:
 			this.hp = this.hp.add(statusVariation);
-			System.out.println("HP‚ª" + statusVariation + "ã¸‚µ‚Ü‚µ‚½B");
+			System.out.println("HPãŒ" + statusVariation + "ä¸Šæ˜‡ã—ã¾ã—ãŸã€‚");
 			System.out.println();
 			break;
 		default:
@@ -97,11 +97,11 @@ public class UserWAR implements User {
 		switch (equipType) {
 		case WEAPON:
 			this.equipments.put("weapon", equipment);
-			System.out.println(this.userName + "‚ÍA" + equipment + "‚ğ‘•”õ‚µ‚Ü‚µ‚½B");
+			System.out.println(this.userName + "ã¯ã€" + equipment + "ã‚’è£…å‚™ã—ã¾ã—ãŸã€‚");
 			break;
 		case ARMOR:
 			this.equipments.put("armor", equipment);
-			System.out.println(this.userName + "‚ÍA" + equipment + "‚ğ‘•”õ‚µ‚Ü‚µ‚½B");
+			System.out.println(this.userName + "ã¯ã€" + equipment + "ã‚’è£…å‚™ã—ã¾ã—ãŸã€‚");
 			break;
 		default:
 			break;

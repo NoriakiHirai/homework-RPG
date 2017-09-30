@@ -4,35 +4,29 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
 import rpg.ui.Equip;
 import rpg.ui.equipment.EquipImpl;
 import rpg.user.*;
 
 public class Main {
-
 	private final static Logger logger = Logger.getLogger("MainLogging");
 
 	public static void main(String[] args) {
 		try {
 			User player = inputUser();
 			printStatus(player);
-
 			Equip equip = new EquipImpl();
 			equip.equipWeapon(player);
 			equip.equipArmor(player);
-
-			// ‘•”õŠÖ˜A‚Ìƒƒ\ƒbƒh‚ğÀs‚µ‚Ä‚¢‚éŠÔA2“x–Ú‚ÌprintStatus‚ªÀs‚³‚ê‚È‚¢‚æ‚¤
-			// ‰º‹Lsleep‚Å–{ƒƒ\ƒbƒh‚ÌÀs‚ğ’†’f‚·‚éB
+			// è£…å‚™é–¢é€£ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¦ã„ã‚‹é–“ã€2åº¦ç›®ã®printStatusãŒå®Ÿè¡Œã•ã‚Œãªã„ã‚ˆã†
+			// ä¸‹è¨˜sleepã§æœ¬ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè¡Œã‚’ä¸­æ–­ã™ã‚‹ã€‚
 			Thread.sleep(300);
 			printStatus(player);
-
-		} catch (InterruptedException | InputMismatchException | NumberFormatException e) {
+		} catch (InterruptedException | InputMismatchException
+				| NumberFormatException e) {
 			e.printStackTrace();
 		}
-
 		// player.levelUp();
-
 	}
 
 	static User inputUser() {
@@ -40,10 +34,10 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		User user = null;
 		try {
-			System.out.println("ƒ†[ƒU[‚ğì¬‚µ‚Ü‚·");
-			System.out.print("–¼‘OF");
+			System.out.println("ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚’ä½œæˆã—ã¾ã™");
+			System.out.print("åå‰ï¼š");
 			String userName = sc.nextLine();
-			System.out.print("E‹Æ(1Ëím,2Ë–‚–@g‚¢,3Ë“‘¯)F");
+			System.out.print("è·æ¥­(1â‡’æˆ¦å£«,2â‡’é­”æ³•ä½¿ã„,3â‡’ç›—è³Š)ï¼š");
 			int kariType = sc.nextInt();
 			UserType userType = null;
 			switch (kariType) {
@@ -59,29 +53,26 @@ public class Main {
 			default:
 				userType = UserType.NEET;
 			}
-			System.out.print("UŒ‚—ÍF");
+			System.out.print("æ”»æ’ƒåŠ›ï¼š");
 			String str = sc.next();
-			System.out.print("‘f‘‚³F");
+			System.out.print("ç´ æ—©ã•ï¼š");
 			String agi = sc.next();
-			System.out.print("HPF");
+			System.out.print("HPï¼š");
 			String hp = sc.next();
 			System.out.println();
-			
 			user = createUser(userName, userType, str, agi, hp);
 			// sc.close();
-			
 		} catch (InputMismatchException e) {
-			logger.severe("•s³‚ÈE‹Æ‘I‘ğ‚Å‚·B");
+			logger.severe("ä¸æ­£ãªè·æ¥­é¸æŠã§ã™ã€‚");
 			throw e;
 		} catch (NumberFormatException e) {
 			throw e;
 		}
-
 		return user;
-
 	}
 
-	static User createUser(String userName, UserType userType, String str, String agi, String hp) {
+	static User createUser(String userName, UserType userType, String str,
+			String agi, String hp) {
 		try {
 			switch (userType) {
 			case WARRIOR:
@@ -100,31 +91,26 @@ public class Main {
 
 	static void printStatus(User user) {
 		StringBuilder sb1 = new StringBuilder();
-		sb1.append("¡").append(user.getUserName()).append("‚ÌƒXƒe[ƒ^ƒX");
+		sb1.append("â– ").append(user.getUserName()).append("ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹");
 		System.out.println(sb1);
-
 		StringBuilder sb2 = new StringBuilder();
-		sb2.append("’Ê‚è–¼:").append(user.getUserType()).append(user.getUserName());
+		sb2.append("é€šã‚Šå:").append(user.getUserType())
+				.append(user.getUserName());
 		System.out.println(sb2);
-
-		System.out.println("HPF" + user.getHp());
-		System.out.println("UŒ‚—ÍF" + user.getStr());
-		System.out.println("‘f‘‚³F" + user.getAgi());
-
+		System.out.println("HPï¼š" + user.getHp());
+		System.out.println("æ”»æ’ƒåŠ›ï¼š" + user.getStr());
+		System.out.println("ç´ æ—©ã•ï¼š" + user.getAgi());
 		HashMap<String, String> equipments = user.getEquipments();
 		if (equipments.get("weapon") == null) {
-			System.out.println("•ŠíF‘•”õ‚È‚µ");
+			System.out.println("æ­¦å™¨ï¼šè£…å‚™ãªã—");
 		} else {
-			System.out.println("•ŠíF" + equipments.get("weapon"));
+			System.out.println("æ­¦å™¨ï¼š" + equipments.get("weapon"));
 		}
-
 		if (equipments.get("armor") == null) {
-			System.out.println("–h‹ïF‘•”õ‚È‚µ");
+			System.out.println("é˜²å…·ï¼šè£…å‚™ãªã—");
 		} else {
-			System.out.println("–h‹ïF" + equipments.get("armor"));
+			System.out.println("é˜²å…·ï¼š" + equipments.get("armor"));
 		}
-
 		System.out.println();
-
 	}
 }

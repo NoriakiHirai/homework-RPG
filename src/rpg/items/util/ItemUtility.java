@@ -8,47 +8,42 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class ItemUtility {
-	
 	private final static Logger logger = Logger.getLogger("ItemUtilityLogging");
-	
+
 	public static HashMap<String, String> getWeapons() {
-		String weaponFile = "C:\\Users\\nhirai\\eclipse-workspace\\javase\\8.141\\homework-RPG\\src\\rpg\\items\\weapons\\WeaponList.csv";
+		String weaponFile = "/home/guest/workspace/homework-RPG/src/rpg/items/weapons/WeaponList.csv";
 		return getItems(weaponFile);
 	}
 
 	public static HashMap<String, String> getArmors() {
-		String armorFile = "C:\\Users\\nhirai\\eclipse-workspace\\javase\\8.141\\homework-RPG\\src\\rpg\\items\\armors\\ArmorList.csv";
+		String armorFile = "/home/guest/workspace/homework-RPG/src/rpg/items/armors/ArmorList.csv";
 		return getItems(armorFile);
 	}
 
 	private static HashMap<String, String> getItems(String fileName) {
 		HashMap<String, String> itemMap = new HashMap<String, String>();
 		try {
-			// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
-
-			// “Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚ğ‚Ps‚¸‚Âˆ—‚·‚é
+			// èª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ï¼‘è¡Œãšã¤å‡¦ç†ã™ã‚‹
 			String line;
 			while ((line = br.readLine()) != null) {
-				// ‹æØ‚è•¶š","‚Å•ªŠ„‚·‚é
+				// åŒºåˆ‡ã‚Šæ–‡å­—","ã§åˆ†å‰²ã™ã‚‹
 				String[] itemInfo = line.split(",");
-				// •ªŠ„‚µ‚½•¶š—ñ‚ğƒ}ƒbƒv‚ÉŠi”[‚·‚é
+				// åˆ†å‰²ã—ãŸæ–‡å­—åˆ—ã‚’ãƒãƒƒãƒ—ã«æ ¼ç´ã™ã‚‹
 				itemMap.put(itemInfo[0], itemInfo[1]);
 			}
-			
 			br.close();
-			
 		} catch (FileNotFoundException e) {
-			logger.warning(String.format("ˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ª‚İ‚Â‚©‚è‚Ü‚¹‚ñB\n%s\n", fileName));
+			logger.warning(String.format("ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚\n%s\n", fileName));
 		} catch (IOException e) {
-			logger.warning(String.format("ˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½B\n%s\n", fileName));
+			logger.warning(String
+					.format("ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n%s\n", fileName));
 		} catch (ArrayIndexOutOfBoundsException e) {
-			logger.warning(String.format("ˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚É–â‘è‚ª‚ ‚è‚Ü‚·B\n%s\n", fileName));
+			logger.warning(String
+					.format("ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã«å•é¡ŒãŒã‚ã‚Šã¾ã™ã€‚\n%s\n", fileName));
 		}
-
 		return itemMap;
-
 	}
-
 }
