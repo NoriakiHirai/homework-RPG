@@ -22,10 +22,11 @@ public class ItemUtility {
 
 	private static HashMap<String, String> getItems(String fileName) {
 		HashMap<String, String> itemMap = new HashMap<String, String>();
-		try {
+		try (
 			// ファイルを読み込む
 			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
+		) {
 			// 読み込んだファイルを１行ずつ処理する
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -34,7 +35,6 @@ public class ItemUtility {
 				// 分割した文字列をマップに格納する
 				itemMap.put(itemInfo[0], itemInfo[1]);
 			}
-			br.close();
 		} catch (FileNotFoundException e) {
 			logger.warning(String.format("以下のファイルがみつかりません。\n%s\n", fileName));
 		} catch (IOException e) {
@@ -42,7 +42,7 @@ public class ItemUtility {
 					.format("以下のファイルの読み込みに失敗しました。\n%s\n", fileName));
 		} catch (ArrayIndexOutOfBoundsException e) {
 			logger.warning(String
-					.format("以下のファイルのデータに問題があります。\n%s\n", fileName));
+					.format("以下のファイル内に不正データなデータが存在します。\n%s\n", fileName));
 		}
 		return itemMap;
 	}
