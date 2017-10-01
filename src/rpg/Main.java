@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
-import rpg.ui.Equip;
-import rpg.ui.equipment.EquipImpl;
+import rpg.ui.Equipment;
+import rpg.ui.equipment.EquipmentImpl;
 import rpg.user.*;
 
 public class Main {
@@ -15,7 +15,7 @@ public class Main {
 		try {
 			User player = inputUser();
 			printStatus(player);
-			Equip equip = new EquipImpl();
+			Equipment equip = new EquipmentImpl();
 			equip.equipWeapon(player);
 			equip.equipArmor(player);
 			// 装備関連のメソッドを実行している間、2度目のprintStatusが実行されないよう

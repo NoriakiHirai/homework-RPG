@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import rpg.items.EquipType;
 import rpg.items.util.ItemUtility;
-import rpg.ui.Equip;
+import rpg.ui.Equipment;
 import rpg.user.StatusType;
 import rpg.user.User;
 
-public class EquipImpl implements Equip {
+public class EquipmentImpl implements Equipment {
 
 	private final Logger logger = Logger.getLogger("EquipImplLogging");
 	private static final String STRENGTHVALIATION = "攻撃力変動値";
