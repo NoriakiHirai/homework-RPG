@@ -9,7 +9,7 @@ import rpg.ui.equipment.EquipmentImpl;
 import rpg.user.*;
 
 public class Main {
-	private final static Logger logger = Logger.getLogger("MainLogging");
+	private final static Logger logger = Logger.getLogger("RpgLogging");
 
 	public static void main(String[] args) {
 		try {

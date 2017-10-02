@@ -8,7 +8,7 @@ import rpg.items.EquipType;
 
 public class UserTHI implements User {
 
-	private final Logger logger = Logger.getLogger("UserTHILogging");
+	private final Logger logger = Logger.getLogger("RpgLogging");
 	private final String userName;
 	private final UserType userType;
 	private BigDecimal str; // 攻撃力

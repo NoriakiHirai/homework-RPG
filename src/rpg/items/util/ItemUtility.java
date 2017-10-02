@@ -8,15 +8,15 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class ItemUtility {
-	private final static Logger logger = Logger.getLogger("ItemUtilityLogging");
+	private final static Logger logger = Logger.getLogger("RpgLogging");
 
 	public static HashMap<String, String> getWeapons() {
-		String weaponFile = "/home/guest/workspace/homework-RPG/src/rpg/items/weapons/WeaponList.csv";
+		String weaponFile = "src/rpg/items/weapons/WeaponList.csv";
 		return getItems(weaponFile);
 	}
 
 	public static HashMap<String, String> getArmors() {
-		String armorFile = "/home/guest/workspace/homework-RPG/src/rpg/items/armors/ArmorList.csv";
+		String armorFile = "src/rpg/items/armors/ArmorList.csv";
 		return getItems(armorFile);
 	}
 

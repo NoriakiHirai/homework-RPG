@@ -13,7 +13,7 @@ import rpg.user.User;
 
 public class EquipmentImpl implements Equipment {
 
-	private final Logger logger = Logger.getLogger("EquipImplLogging");
+	private final Logger logger = Logger.getLogger("RpgLogging");
 	private static final String STRENGTHVALIATION = "攻撃力変動値";
 	private static final String HPVALIATION = "HP変動値";
 
