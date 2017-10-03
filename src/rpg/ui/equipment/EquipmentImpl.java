@@ -1,5 +1,6 @@
 package rpg.ui.equipment;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class EquipmentImpl implements Equipment {
 	private static final String HPVALIATION = "HP変動値";
 
 	@Override
-	public void equipWeapon(User user) {
+	public void equipWeapon(User user) throws IOException {
 		HashMap<String, String> weapons = ItemUtility.getWeapons();
 		
 		try {
@@ -54,7 +55,7 @@ public class EquipmentImpl implements Equipment {
 	}
 
 	@Override
-	public void equipArmor(User user) {
+	public void equipArmor(User user) throws IOException {
 		HashMap<String, String> armors = ItemUtility.getArmors();
 		
 		try {

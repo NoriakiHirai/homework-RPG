@@ -1,5 +1,6 @@
 package rpg;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,13 +21,15 @@ public class Main {
 			equip.equipArmor(player);
 			// 装備関連のメソッドを実行している間、2度目のprintStatusが実行されないよう
 			// 下記sleepで本メソッドの実行を中断する。
-			Thread.sleep(300);
 			printStatus(player);
-		} catch (InterruptedException | InputMismatchException
-				| NumberFormatException e) {
+		} catch (InputMismatchException | NumberFormatException | IOException e) {
 			e.printStackTrace();
 		}
-		// player.levelUp();
+//		// player.levelUp();
+// catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	static User inputUser() {
@@ -71,8 +74,7 @@ public class Main {
 		return user;
 	}
 
-	static User createUser(String userName, UserType userType, String str,
-			String agi, String hp) {
+	static User createUser(String userName, UserType userType, String str, String agi, String hp) {
 		try {
 			switch (userType) {
 			case WARRIOR:
@@ -94,8 +96,7 @@ public class Main {
 		sb1.append("■").append(user.getUserName()).append("のステータス");
 		System.out.println(sb1);
 		StringBuilder sb2 = new StringBuilder();
-		sb2.append("通り名:").append(user.getUserType())
-				.append(user.getUserName());
+		sb2.append("通り名:").append(user.getUserType()).append(user.getUserName());
 		System.out.println(sb2);
 		System.out.println("HP：" + user.getHp());
 		System.out.println("攻撃力：" + user.getStr());
