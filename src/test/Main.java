@@ -61,16 +61,17 @@ public class Main {
 			return new UserWIZ(userName,userType,str,agi,hp);
 		case THIEF:
 			return new UserTHI(userName,userType,str,agi,hp);
+		default:
+			return new UserNEE(userName,userType,str,agi,hp);
 		}
-		return new UserNEE(userName,userType,str,agi,hp);
 	}
 
 	static void printStatus(User user){
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("■").append(user.getUserName()).append("のステータス");
 		System.out.println(sb1);
-		sb1.append("通り名:").append(user.getUserType()).append(user.getUserName());
 		StringBuilder sb2 = new StringBuilder();
+		sb2.append("通り名:").append(user.getUserType()).append(user.getUserName());
 		System.out.println(sb2);
 		System.out.println("HP：" + user.getHp());
 		System.out.println("攻撃力：" + user.getStr());
