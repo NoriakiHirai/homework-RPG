@@ -25,24 +25,12 @@ public class Equipment extends Item {
 		return strength;
 	}
 
-	public void setStrength(BigDecimal strength) {
-		this.strength = strength;
-	}
-
 	public BigDecimal getAgility() {
 		return agility;
 	}
 
-	public void setAgility(BigDecimal agility) {
-		this.agility = agility;
-	}
-
 	public BigDecimal getHp() {
 		return hp;
-	}
-
-	public void setHp(BigDecimal hp) {
-		this.hp = hp;
 	}
 
 }
