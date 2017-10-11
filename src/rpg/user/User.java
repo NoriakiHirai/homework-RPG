@@ -6,6 +6,7 @@ import rpg.items.Equipment;
 
 public interface User {
 	void levelUp();
+	void enhanceByEquipment(Equipment equipment);
 	String getUserName();
 	UserType getUserType();
 	BigDecimal getStr();

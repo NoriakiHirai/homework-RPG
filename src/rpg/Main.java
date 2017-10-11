@@ -27,12 +27,8 @@ public class Main {
 			printStatus(player);
 	
 			equipper(player);
-
-			// 装備関連のメソッドを実行している間、2度目のprintStatusが実行されないよう
-			// 下記sleepで本メソッドの実行を中断する。
-			// Thread.sleep(300);
 			printStatus(player);
-		} catch (/* InterruptedException | */ InputMismatchException | NumberFormatException | IOException e) {
+		} catch (InputMismatchException | NumberFormatException | IOException e) {
 			e.printStackTrace();
 			return;
 		}
@@ -108,13 +104,13 @@ public class Main {
 		sb2.append("通り名:").append(user.getUserType()).append(user.getUserName());
 		System.out.println(sb2);
 		
-		// 各種ステータスは、装備品のステータスを加算して表示する。
+		String equipWeapon;
+		String equipArmor;
+
 		Equipment weapon = user.getWeapon();
 		Equipment armor = user.getArmor();
 
-		String equipWeapon;
-		String equipArmor;
-		
+		// 各種ステータスは、装備品のステータスを加算して表示する。
 		BigDecimal hp = user.getHp();
 		BigDecimal strength = user.getStr();
 		BigDecimal agility = user.getAgi();
@@ -123,18 +119,14 @@ public class Main {
 			equipWeapon = NONEQUIP;
 		} else {
 			equipWeapon = weapon.getName();
-			hp = hp.add(weapon.getHp());
-			strength = strength.add(weapon.getStrength());
-			agility = agility.add(weapon.getAgility());
+			user.enhanceByEquipment(weapon);
 		}
 
 		if (armor == null) {
 			equipArmor = NONEQUIP;
 		} else {
 			equipArmor = armor.getName();
-			hp = hp.add(armor.getHp());
-			strength = strength.add(armor.getStrength());
-			agility = agility.add(armor.getAgility());
+			user.enhanceByEquipment(armor);
 		}
 		
 		System.out.println(HP + hp);
@@ -200,7 +192,7 @@ public class Main {
 			logger.severe(String.format("以下のファイルの読み込みに失敗しました。\n%s\n", fileName));
 			throw e;
 		} catch (ArrayIndexOutOfBoundsException e) {
-			logger.severe(String.format("以下のファイル内に不正データなデータが存在します。\n%s\n", fileName));
+			logger.severe(String.format("以下の装備品ファイル内に不正データなデータが存在します。\n%s\n", fileName));
 			throw e;
 		} catch (NumberFormatException e) {
 			throw e;

@@ -106,5 +106,13 @@ public class UserNEE implements User {
 		System.out.println();
 	}
 
+	@Override
+	public void enhanceByEquipment(Equipment equipment) {
+		this.hp = this.hp.add(equipment.getHp());
+		this.str = this.str.add(equipment.getStrength());
+		this.agi = this.agi.add(equipment.getAgility());
+
+	}
+
 
 }
