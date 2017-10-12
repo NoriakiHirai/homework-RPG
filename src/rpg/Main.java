@@ -137,6 +137,22 @@ public class Main {
 		System.out.println();
 	}
 
+	private static void printResultOfEquip(User user, Equipment equipment) {
+		System.out.println(user.getUserName() + "は、" + equipment.getName() + "を装備しました。");
+		
+		if (equipment.getStrength().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("攻撃力が" + equipment.getStrength() + "上昇しました。");
+		}
+		if (equipment.getAgility().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("素早さが" + equipment.getAgility() + "上昇しました。");
+		}
+		if (equipment.getHp().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("HPが" + equipment.getHp() + "上昇しました。");
+		}
+		
+		System.out.println();
+	}
+	
 	private static void equipper(User user) throws IOException {
 		HashMap<String, Equipment> weapons, armors;
 
@@ -153,6 +169,8 @@ public class Main {
 		// 装備アイテムのセット
 		if (weapons.containsKey(selectedWeapon)) {
 			user.setWeapon(weapons.get(selectedWeapon));
+			printResultOfEquip(user, weapons.get(selectedWeapon));
+		} else if (selectedWeapon == "") { // 所持武器が0の場合
 		} else {
 			System.out.println("入力された装備アイテムを所持していません。");
 			System.out.println();
@@ -161,6 +179,8 @@ public class Main {
 		String selectedArmor = selectEquipment(armors, EquipType.ARMOR);
 		if (armors.containsKey(selectedArmor)) {
 			user.setArmor(armors.get(selectedArmor));
+			printResultOfEquip(user, armors.get(selectedArmor));
+		} else if (selectedWeapon == "") { // 所持防具が0の場合
 		} else {
 			System.out.println("入力された装備アイテムを所持していません。");
 			System.out.println();
@@ -234,5 +254,5 @@ public class Main {
 		
 		return "";
 	}
-
+	
 }

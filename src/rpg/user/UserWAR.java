@@ -60,19 +60,6 @@ public class UserWAR implements User {
 
 	public void setWeapon(Equipment weapon) {
 		this.weapon = weapon;
-		System.out.println(this.userName + "は、" + weapon.getName() + "を装備しました。");
-		
-		if (weapon.getStrength().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("攻撃力が" + weapon.getStrength() + "上昇しました。");
-		}
-		if (weapon.getAgility().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("素早さが" + weapon.getAgility() + "上昇しました。");
-		}
-		if (weapon.getHp().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("HPが" + weapon.getHp() + "上昇しました。");
-		}
-		
-		System.out.println();
 	}
 
 	public Equipment getArmor() {
@@ -81,19 +68,6 @@ public class UserWAR implements User {
 
 	public void setArmor(Equipment armor) {
 		this.armor = armor;
-		System.out.println(this.userName + "は、" + armor.getName() + "を装備しました。");
-		
-		if (armor.getStrength().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("攻撃力が" + armor.getStrength() + "上昇しました。");
-		}
-		if (armor.getAgility().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("素早さが" + armor.getAgility() + "上昇しました。");
-		}
-		if (armor.getHp().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("HPが" + armor.getHp() + "上昇しました。");
-		}
-		
-		System.out.println();
 	}
 
 	@Override
