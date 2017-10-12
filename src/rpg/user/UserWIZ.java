@@ -55,6 +55,7 @@ public class UserWIZ implements User {
 
 	public void setWeapon(Equipment weapon) {
 		this.weapon = weapon;
+		enhanceByEquipment(weapon);
 	}
 
 	public Equipment getArmor() {
@@ -63,6 +64,7 @@ public class UserWIZ implements User {
 
 	public void setArmor(Equipment armor) {
 		this.armor = armor;
+		enhanceByEquipment(armor);
 	}
 	
 	@Override
