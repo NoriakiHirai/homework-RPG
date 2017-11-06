@@ -8,14 +8,18 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-import rpg.items.EquipType;
 import rpg.items.Equipment;
 import rpg.user.*;
 
 public class Main {
-	private final static Logger logger = Logger.getLogger("RpgLogging");
+	private static final Logger logger = Logger.getLogger(Main.class.getName());
 	private final static String STRENGTH = "攻撃力:";
 	private final static String AGILITY = "素早さ:";
 	private final static String HP = "HP:";
@@ -23,9 +27,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			logger.setLevel(Level.FINE);
+
+			Handler handler = new FileHandler("C:\\sample\\sample.log");
+			logger.addHandler(handler);
+			
+			Formatter formatter =  new SimpleFormatter();
+			handler.setFormatter(formatter);
+
+			logger.log(Level.FINE, " main start ");
+			
 			User player = inputUser();
 			printStatus(player);
-	
 			equipper(player);
 			printStatus(player);
 		} catch (InputMismatchException | NumberFormatException | IOException e) {
@@ -34,10 +47,10 @@ public class Main {
 		}
 		
 		// player.levelUp();
-		
 	}
 
 	static User inputUser() {
+		logger.log(Level.FINE, " inputUser start ");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		User user = null;
@@ -106,7 +119,6 @@ public class Main {
 		
 		String equipWeapon;
 		String equipArmor;
-
 		Equipment weapon = user.getWeapon();
 		Equipment armor = user.getArmor();
 
@@ -121,7 +133,6 @@ public class Main {
 			equipWeapon = weapon.getName();
 			user.enhanceByEquipment(weapon);
 		}
-
 		if (armor == null) {
 			equipArmor = NONEQUIP;
 		} else {
@@ -149,7 +160,6 @@ public class Main {
 		if (equipment.getHp().compareTo(BigDecimal.ZERO) > 0) {
 			System.out.println("HPが" + equipment.getHp() + "上昇しました。");
 		}
-		
 		System.out.println();
 	}
 	
@@ -164,8 +174,9 @@ public class Main {
 			throw e;
 		}
 
-		// 装備するアイテムの選択 
-		String selectedWeapon = selectEquipment(weapons, EquipType.WEAPON);
+		// 装備するアイテムの選択 (武器)
+		System.out.println("*** 武器装備メニュー ***");
+		String selectedWeapon = selectEquipment(weapons);
 		// 装備アイテムのセット
 		if (weapons.containsKey(selectedWeapon)) {
 			user.setWeapon(weapons.get(selectedWeapon));
@@ -175,8 +186,9 @@ public class Main {
 			System.out.println("入力された装備アイテムを所持していません。");
 			System.out.println();
 		}
-
-		String selectedArmor = selectEquipment(armors, EquipType.ARMOR);
+		// 装備するアイテムの選択 (防具)
+		System.out.println("*** 防具装備メニュー ***");
+		String selectedArmor = selectEquipment(armors);
 		if (armors.containsKey(selectedArmor)) {
 			user.setArmor(armors.get(selectedArmor));
 			printResultOfEquip(user, armors.get(selectedArmor));
@@ -185,7 +197,6 @@ public class Main {
 			System.out.println("入力された装備アイテムを所持していません。");
 			System.out.println();
 		}
-
 	}
 
 	private static HashMap<String, Equipment> getEquipments(String fileName) throws IOException {
@@ -217,24 +228,13 @@ public class Main {
 		} catch (NumberFormatException e) {
 			throw e;
 		}
-
 		return equipmentMap;
 	}
 
-	private static String selectEquipment(HashMap<String, Equipment> equipmentMap, EquipType equipType) {
-		switch (equipType) {
-		case WEAPON:
-			System.out.println("*** 武器装備メニュー ***");
-			break;
-		case ARMOR:
-			System.out.println("*** 防具装備メニュー ***");
-			break;
-		}
-		
+	private static String selectEquipment(HashMap<String, Equipment> equipmentMap) {
 		if (equipmentMap.size() != 0) {
 			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
-
 			for (String key : equipmentMap.keySet()) {
 				System.out.println(key);
 				System.out.println("    " + STRENGTH + equipmentMap.get(key).getStrength());
@@ -242,16 +242,12 @@ public class Main {
 				System.out.println("    " + HP + equipmentMap.get(key).getHp());
 				System.out.println("--------------");
 			}
-
 			System.out.print("装備するアイテムを入力してください。>");
 			return sc.nextLine();
-			
 		} else {
 			System.out.println("現在装備できる武器はありません。");
 			System.out.println();
-			
 		}
-		
 		return "";
 	}
 	
