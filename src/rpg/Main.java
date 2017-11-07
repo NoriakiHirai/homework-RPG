@@ -30,7 +30,8 @@ public class Main {
 			printStatus(player);
 			equipper(player);
 			printStatus(player);
-		} catch (InputMismatchException | NumberFormatException | IOException e) {
+		} catch (Exception e) {
+			e.toString();
 			e.printStackTrace();
 			return;
 		}
@@ -39,7 +40,7 @@ public class Main {
 		logger.log(Level.FINE, " main end ");
 	}
 
-	static User inputUser() {
+	static User inputUser() throws Exception {
 		logger.log(Level.FINE, " inputUser start ");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -74,8 +75,7 @@ public class Main {
 			user = createUser(userName, userType, str, agi, hp);
 			// sc.close();
 		} catch (InputMismatchException e) {
-			logger.severe("不正な職業選択です。");
-			throw e;
+			throw new Exception("不正な職業選択です。");
 		} catch (NumberFormatException e) {
 			throw e;
 		}
