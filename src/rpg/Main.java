@@ -8,35 +8,24 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import rpg.items.Equipment;
 import rpg.user.*;
 
 public class Main {
-	private static final Logger logger = Logger.getLogger(Main.class.getName());
+	private static Logger logger = LogFactory.createLogger(new Object(){}.getClass().getEnclosingClass().getName());
+	private final static String TOP_PATH = System.getProperty("user.dir");
 	private final static String STRENGTH = "攻撃力:";
 	private final static String AGILITY = "素早さ:";
 	private final static String HP = "HP:";
 	private final static String NONEQUIP = "装備なし";
-
+    
 	public static void main(String[] args) {
+		
+		logger.log(Level.FINE, " main start ");
 		try {
-			logger.setLevel(Level.FINE);
-
-			Handler handler = new FileHandler("C:\\sample\\sample.log");
-			logger.addHandler(handler);
-			
-			Formatter formatter =  new SimpleFormatter();
-			handler.setFormatter(formatter);
-
-			logger.log(Level.FINE, " main start ");
-			
 			User player = inputUser();
 			printStatus(player);
 			equipper(player);
@@ -47,6 +36,7 @@ public class Main {
 		}
 		
 		// player.levelUp();
+		logger.log(Level.FINE, " main end ");
 	}
 
 	static User inputUser() {
@@ -89,19 +79,25 @@ public class Main {
 		} catch (NumberFormatException e) {
 			throw e;
 		}
+		logger.log(Level.FINE, " inputUser end ");
 		return user;
 	}
 
 	static User createUser(String userName, UserType userType, String str, String agi, String hp) {
+		logger.log(Level.FINE, " createUser start ");
 		try {
 			switch (userType) {
 			case WARRIOR:
+				logger.log(Level.FINE, " create WARRIOR ");
 				return new UserWAR(userName, userType, str, agi, hp);
 			case WIZARD:
+				logger.log(Level.FINE, " create WIZARD ");
 				return new UserWIZ(userName, userType, str, agi, hp);
 			case THIEF:
+				logger.log(Level.FINE, " create THIEF ");
 				return new UserTHI(userName, userType, str, agi, hp);
 			default:
+				logger.log(Level.FINE, " create NEET(default) ");
 				return new UserNEE(userName, userType, str, agi, hp);
 			}
 		} catch (NumberFormatException e) {
@@ -110,6 +106,7 @@ public class Main {
 	}
 
 	static void printStatus(User user) {
+		logger.log(Level.FINE, " printStatus start ");
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("■").append(user.getUserName()).append("のステータス");
 		System.out.println(sb1);
@@ -146,9 +143,11 @@ public class Main {
 		System.out.println("武器：" + equipWeapon);
 		System.out.println("防具：" + equipArmor);
 		System.out.println();
+		logger.log(Level.FINE, " printStatus end ");
 	}
 
 	private static void printResultOfEquip(User user, Equipment equipment) {
+		logger.log(Level.FINE, " printResultOfEquip start ");
 		System.out.println(user.getUserName() + "は、" + equipment.getName() + "を装備しました。");
 		
 		if (equipment.getStrength().compareTo(BigDecimal.ZERO) > 0) {
@@ -161,15 +160,17 @@ public class Main {
 			System.out.println("HPが" + equipment.getHp() + "上昇しました。");
 		}
 		System.out.println();
+		logger.log(Level.FINE, " printResultOfEquip end ");
 	}
 	
 	private static void equipper(User user) throws IOException {
+		logger.log(Level.FINE, " equipper start ");
 		HashMap<String, Equipment> weapons, armors;
 
 		// 所持している装備品の取得
 		try {
-			weapons = getEquipments("src/rpg/items/WeaponList.csv");
-			armors = getEquipments("src/rpg/items/ArmorList.csv");
+			weapons = getEquipments(TOP_PATH + "/rpg/items/WeaponList.csv");
+			armors = getEquipments(TOP_PATH + "/rpg/items/ArmorList.csv");
 		} catch (IOException e) {
 			throw e;
 		}
@@ -197,9 +198,11 @@ public class Main {
 			System.out.println("入力された装備アイテムを所持していません。");
 			System.out.println();
 		}
+		logger.log(Level.FINE, " equipper end ");
 	}
 
 	private static HashMap<String, Equipment> getEquipments(String fileName) throws IOException {
+		logger.log(Level.FINE, " getEquipments start ");
 		HashMap<String, Equipment> equipmentMap = new HashMap<String, Equipment>();
 		try (
 				// ファイルを読み込む
@@ -228,10 +231,12 @@ public class Main {
 		} catch (NumberFormatException e) {
 			throw e;
 		}
+		logger.log(Level.FINE, " getEquipments end ");
 		return equipmentMap;
 	}
 
 	private static String selectEquipment(HashMap<String, Equipment> equipmentMap) {
+		logger.log(Level.FINE, " selectEquipment start ");
 		if (equipmentMap.size() != 0) {
 			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
@@ -243,11 +248,13 @@ public class Main {
 				System.out.println("--------------");
 			}
 			System.out.print("装備するアイテムを入力してください。>");
+			logger.log(Level.FINE, " selectEquipment end ");
 			return sc.nextLine();
 		} else {
 			System.out.println("現在装備できる武器はありません。");
 			System.out.println();
 		}
+		logger.log(Level.FINE, " selectEquipment end ");
 		return "";
 	}
 	
