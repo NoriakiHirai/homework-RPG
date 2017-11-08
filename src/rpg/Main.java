@@ -30,7 +30,6 @@ public class Main {
 			equipper(player);
 			printStatus(player);
 		} catch (Exception e) {
-			e.toString();
 			e.printStackTrace();
 			return;
 		}
