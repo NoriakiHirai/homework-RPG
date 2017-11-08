@@ -21,7 +21,7 @@ public class Item {
 
 	public String getName() {
 		logger.log(Level.FINE, " getName run ");
-		return name;
+		return this.name;
 	}
 
 }

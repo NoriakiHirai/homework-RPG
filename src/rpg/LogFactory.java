@@ -14,7 +14,7 @@ public class LogFactory {
 	
 	static {
 		try {
-			handler = new FileHandler("C:/Data/log/java/homework-rpg/debug.log", true);
+			handler = new FileHandler("C:/data/logs/java/homework-rpg/debug.log", false);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

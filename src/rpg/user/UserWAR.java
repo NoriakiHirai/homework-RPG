@@ -22,7 +22,7 @@ public class UserWAR implements User {
 			UserType userType,
 			String str,
 			String agi,
-			String hp) {
+			String hp) throws Exception {
 		super();
 		logger.log(Level.FINE, " UserWAR(Constructor) start ");
 		this.userName = userName;
@@ -32,8 +32,8 @@ public class UserWAR implements User {
 			this.agi = new BigDecimal(agi);
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
-			logger.severe("入力ステータスに不正な値が存在します。");
-			throw e;
+			logger.log(Level.SEVERE, "引数に不正な値が存在します。");
+			throw new Exception("引数に不正な値が存在します。");
 		}
 		logger.log(Level.FINE, " UserWAR(Constructor) end ");
 	}
@@ -69,10 +69,8 @@ public class UserWAR implements User {
 	}
 
 	public void setWeapon(Equipment weapon) {
-		logger.log(Level.FINE, " setWeapon start ");
+		logger.log(Level.FINE, " setWeapon run ");
 		this.weapon = weapon;
-		enhanceByEquipment(weapon);
-		logger.log(Level.FINE, " setWeapon end ");
 	}
 
 	public Equipment getArmor() {
@@ -81,10 +79,8 @@ public class UserWAR implements User {
 	}
 
 	public void setArmor(Equipment armor) {
-		logger.log(Level.FINE, " setArmor start ");
+		logger.log(Level.FINE, " setArmor run ");
 		this.armor = armor;
-		enhanceByEquipment(armor);
-		logger.log(Level.FINE, " setArmor end ");
 	}
 
 	@Override
@@ -99,13 +95,4 @@ public class UserWAR implements User {
 		logger.log(Level.FINE, " levelUp end ");
 	}
 	
-	@Override
-	public void enhanceByEquipment(Equipment equipment) {
-		logger.log(Level.FINE, " enhanceByEquipment start ");
-		this.hp = this.hp.add(equipment.getHp());
-		this.str = this.str.add(equipment.getStrength());
-		this.agi = this.agi.add(equipment.getAgility());
-		logger.log(Level.FINE, " enhanceByEquipment end ");
-	}
-
 }

@@ -12,7 +12,7 @@ public class Equipment extends Item {
 	private BigDecimal agility;
 	private BigDecimal hp;
 
-	public Equipment(String name, String strength, String agility, String hp) throws NumberFormatException {
+	public Equipment(String name, String strength, String agility, String hp) throws Exception {
 		super(name);
 		logger.log(Level.FINE, " Equipment(Constructor) start ");
 		try {
@@ -20,25 +20,25 @@ public class Equipment extends Item {
 			this.agility = new BigDecimal(agility);
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
-			logger.severe("装備品ファイル内に不正なデータが存在します。");
-			throw e;
+			logger.log(Level.SEVERE, "装備品ファイル内に不正なデータが存在します。");
+			throw new Exception("装備品ファイル内に不正データなデータが存在します。");
 		}
 		logger.log(Level.FINE, " Equipment(Constructor) end ");
 	}
 
 	public BigDecimal getStrength() {
 		logger.log(Level.FINE, " getStrength run ");
-		return strength;
+		return this.strength;
 	}
 
 	public BigDecimal getAgility() {
 		logger.log(Level.FINE, " getAgility run ");
-		return agility;
+		return this.agility;
 	}
 
 	public BigDecimal getHp() {
 		logger.log(Level.FINE, " getHp run ");
-		return hp;
+		return this.hp;
 	}
 
 }

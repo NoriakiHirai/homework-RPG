@@ -23,7 +23,6 @@ public class Main {
 	private final static String NONEQUIP = "装備なし";
     
 	public static void main(String[] args) {
-		
 		logger.log(Level.FINE, " main start ");
 		try {
 			User player = inputUser();
@@ -75,17 +74,15 @@ public class Main {
 			user = createUser(userName, userType, str, agi, hp);
 			// sc.close();
 		} catch (InputMismatchException e) {
-			throw new Exception("不正な職業選択です。");
-		} catch (NumberFormatException e) {
-			throw e;
+			logger.log(Level.SEVERE, "InputMismatchException");
+			throw new Exception("InputMismatchException");
 		}
 		logger.log(Level.FINE, " inputUser end ");
 		return user;
 	}
 
-	static User createUser(String userName, UserType userType, String str, String agi, String hp) {
+	static User createUser(String userName, UserType userType, String str, String agi, String hp) throws Exception {
 		logger.log(Level.FINE, " createUser start ");
-		try {
 			switch (userType) {
 			case WARRIOR:
 				logger.log(Level.FINE, " create WARRIOR ");
@@ -100,9 +97,6 @@ public class Main {
 				logger.log(Level.FINE, " create NEET(default) ");
 				return new UserNEE(userName, userType, str, agi, hp);
 			}
-		} catch (NumberFormatException e) {
-			throw e;
-		}
 	}
 
 	static void printStatus(User user) {
@@ -114,66 +108,46 @@ public class Main {
 		sb2.append("通り名:").append(user.getUserType()).append(user.getUserName());
 		System.out.println(sb2);
 		
-		String equipWeapon;
-		String equipArmor;
-		Equipment weapon = user.getWeapon();
-		Equipment armor = user.getArmor();
-
+		String weaponName;
+		String armorName;
+		Equipment equippedWeapon = user.getWeapon();
+		Equipment equippedArmor = user.getArmor();
 		// 各種ステータスは、装備品のステータスを加算して表示する。
 		BigDecimal hp = user.getHp();
 		BigDecimal strength = user.getStr();
 		BigDecimal agility = user.getAgi();
-		
-		if (weapon == null) {
-			equipWeapon = NONEQUIP;
+		if (equippedWeapon == null) {
+			weaponName = NONEQUIP;
 		} else {
-			equipWeapon = weapon.getName();
-			user.enhanceByEquipment(weapon);
+			weaponName = equippedWeapon.getName();
+			hp = hp.add(equippedWeapon.getHp());
+			strength = strength.add(equippedWeapon.getStrength());
+			agility = agility.add(equippedWeapon.getAgility());
 		}
-		if (armor == null) {
-			equipArmor = NONEQUIP;
+		if (equippedArmor == null) {
+			armorName = NONEQUIP;
 		} else {
-			equipArmor = armor.getName();
-			user.enhanceByEquipment(armor);
+			armorName = equippedArmor.getName();
+			hp = hp.add(equippedArmor.getHp());
+			strength = strength.add(equippedArmor.getStrength());
+			agility = agility.add(equippedArmor.getAgility());
 		}
 		
 		System.out.println(HP + hp);
 		System.out.println(STRENGTH + strength);
 		System.out.println(AGILITY + agility);
-		System.out.println("武器：" + equipWeapon);
-		System.out.println("防具：" + equipArmor);
+		System.out.println("武器：" + weaponName);
+		System.out.println("防具：" + armorName);
 		System.out.println();
 		logger.log(Level.FINE, " printStatus end ");
 	}
 
-	private static void printResultOfEquip(User user, Equipment equipment) {
-		logger.log(Level.FINE, " printResultOfEquip start ");
-		System.out.println(user.getUserName() + "は、" + equipment.getName() + "を装備しました。");
-		
-		if (equipment.getStrength().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("攻撃力が" + equipment.getStrength() + "上昇しました。");
-		}
-		if (equipment.getAgility().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("素早さが" + equipment.getAgility() + "上昇しました。");
-		}
-		if (equipment.getHp().compareTo(BigDecimal.ZERO) > 0) {
-			System.out.println("HPが" + equipment.getHp() + "上昇しました。");
-		}
-		System.out.println();
-		logger.log(Level.FINE, " printResultOfEquip end ");
-	}
-	
-	private static void equipper(User user) throws IOException {
+	private static void equipper(User user) throws Exception {
 		logger.log(Level.FINE, " equipper start ");
 		HashMap<String, Equipment> weapons, armors;
-
 		// 所持している装備品の取得
-		try {
-			weapons = getEquipments(TOP_PATH + "/rpg/items/WeaponList.csv");
-			armors = getEquipments(TOP_PATH + "/rpg/items/ArmorList.csv");
-		} catch (IOException e) {
-			throw e;
-		}
+		weapons = getEquipments(TOP_PATH + "/src/rpg/items/WeaponList.csv");
+		armors = getEquipments(TOP_PATH + "/src/rpg/items/ArmorList.csv");
 
 		// 装備するアイテムの選択 (武器)
 		System.out.println("*** 武器装備メニュー ***");
@@ -201,7 +175,7 @@ public class Main {
 		logger.log(Level.FINE, " equipper end ");
 	}
 
-	private static HashMap<String, Equipment> getEquipments(String fileName) throws IOException {
+	private static HashMap<String, Equipment> getEquipments(String fileName) throws Exception {
 		logger.log(Level.FINE, " getEquipments start ");
 		HashMap<String, Equipment> equipmentMap = new HashMap<String, Equipment>();
 		try (
@@ -220,16 +194,14 @@ public class Main {
 				equipmentMap.put(equipment.getName(), equipment);
 			}
 		} catch (FileNotFoundException e) {
-			logger.severe(String.format("以下のファイルがみつかりません。\n%s\n", fileName));
-			throw e;
+			logger.log(Level.SEVERE, String.format("以下のファイルがみつかりません。\n%s\n", fileName));
+			throw new Exception("ファイルがみつかりません。");
 		} catch (IOException e) {
-			logger.severe(String.format("以下のファイルの読み込みに失敗しました。\n%s\n", fileName));
-			throw e;
+			logger.log(Level.SEVERE, String.format("以下のファイルの読み込みに失敗しました。\n%s\n", fileName));
+			throw new Exception("ファイルの読み込みに失敗しました。");
 		} catch (ArrayIndexOutOfBoundsException e) {
-			logger.severe(String.format("以下の装備品ファイル内に不正データなデータが存在します。\n%s\n", fileName));
-			throw e;
-		} catch (NumberFormatException e) {
-			throw e;
+			logger.log(Level.SEVERE, String.format("以下の装備品ファイルのデータが不正です。\n%s\n", fileName));
+			throw new Exception("装備品ファイルのデータが不正です。");
 		}
 		logger.log(Level.FINE, " getEquipments end ");
 		return equipmentMap;
@@ -256,6 +228,23 @@ public class Main {
 		}
 		logger.log(Level.FINE, " selectEquipment end ");
 		return "";
+	}
+	
+	private static void printResultOfEquip(User user, Equipment equipment) {
+		logger.log(Level.FINE, " printResultOfEquip start ");
+		System.out.println(user.getUserName() + "は、" + equipment.getName() + "を装備しました。");
+		
+		if (equipment.getStrength().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("攻撃力が" + equipment.getStrength() + "上昇します。");
+		}
+		if (equipment.getAgility().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("素早さが" + equipment.getAgility() + "上昇します。");
+		}
+		if (equipment.getHp().compareTo(BigDecimal.ZERO) > 0) {
+			System.out.println("HPが" + equipment.getHp() + "上昇します。");
+		}
+		System.out.println();
+		logger.log(Level.FINE, " printResultOfEquip end ");
 	}
 	
 }
