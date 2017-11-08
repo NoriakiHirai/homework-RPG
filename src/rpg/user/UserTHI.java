@@ -28,7 +28,7 @@ public class UserTHI implements User {
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
 			logger.log(Level.SEVERE, "引数に不正な値が存在します。");
-			throw new Exception("引数に不正な値が存在します。");
+			throw new Exception("引数に不正な値が存在します。", e);
 		}
 		logger.log(Level.FINE, " UserTHI(Constructor) end ");
 	}

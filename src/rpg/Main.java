@@ -74,8 +74,8 @@ public class Main {
 			user = createUser(userName, userType, str, agi, hp);
 			// sc.close();
 		} catch (InputMismatchException e) {
-			logger.log(Level.SEVERE, "InputMismatchException");
-			throw new Exception("InputMismatchException");
+			logger.log(Level.SEVERE, "不正な職業選択です。");
+			throw new Exception("不正な職業選択です。", e);
 		}
 		logger.log(Level.FINE, " inputUser end ");
 		return user;
@@ -195,13 +195,13 @@ public class Main {
 			}
 		} catch (FileNotFoundException e) {
 			logger.log(Level.SEVERE, String.format("以下のファイルがみつかりません。\n%s\n", fileName));
-			throw new Exception("ファイルがみつかりません。");
+			throw new Exception("ファイルがみつかりません。", e);
 		} catch (IOException e) {
 			logger.log(Level.SEVERE, String.format("以下のファイルの読み込みに失敗しました。\n%s\n", fileName));
-			throw new Exception("ファイルの読み込みに失敗しました。");
+			throw new Exception("ファイルの読み込みに失敗しました。", e);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			logger.log(Level.SEVERE, String.format("以下の装備品ファイルのデータが不正です。\n%s\n", fileName));
-			throw new Exception("装備品ファイルのデータが不正です。");
+			throw new Exception("装備品ファイルのデータが不正です。", e);
 		}
 		logger.log(Level.FINE, " getEquipments end ");
 		return equipmentMap;

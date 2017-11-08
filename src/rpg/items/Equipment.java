@@ -20,8 +20,8 @@ public class Equipment extends Item {
 			this.agility = new BigDecimal(agility);
 			this.hp = new BigDecimal(hp);
 		} catch (NumberFormatException e) {
-			logger.log(Level.SEVERE, "装備品ファイル内に不正なデータが存在します。");
-			throw new Exception("装備品ファイル内に不正データなデータが存在します。");
+			logger.log(Level.SEVERE, "引数に不正な値が存在します。");
+			throw new Exception("引数に不正な値が存在します。", e);
 		}
 		logger.log(Level.FINE, " Equipment(Constructor) end ");
 	}
